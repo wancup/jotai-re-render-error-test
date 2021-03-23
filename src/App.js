@@ -7,24 +7,22 @@ const doubleAtom = atom((get) => {
   return get(countAtom) * 2;
 });
 
-const plusAtom = atom((get) => {
-  const count = get(countAtom);
-  const double = get(doubleAtom);
-  return count + double;
+const fourfoldAtom = atom((get) => {
+  return get(doubleAtom) * 2;
 });
 
 function App() {
   const [count, setCount] = useAtom(countAtom);
-  const [plus] = useAtom(plusAtom);
-  const [plus2] = useAtom(plusAtom);
+  const [fourfold] = useAtom(fourfoldAtom);
+  const [fourfold2] = useAtom(fourfoldAtom);
 
   useEffect(() => {
     setCount(count);
-  }, [count]);
+  }, [count, setCount]);
 
   return (
     <div>
-      {count},{plus}
+      {count},{fourfold}
       <button onClick={() => setCount((c) => c + 1)}>one up</button>
     </div>
   );
